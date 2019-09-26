@@ -8,9 +8,7 @@ class Search extends Component{
     // A method to handle the input key-words from user
     handleChange = (e) => {
         const value = e.target.value;
-        if(value){
         this.props.bookSearch(value);
-        }
     }
 
     // A method to show a note once a change happend on the book status
