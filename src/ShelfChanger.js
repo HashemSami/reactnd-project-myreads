@@ -8,21 +8,25 @@ class ShelfChanger extends Component{
 
     render(){
         const {bookShelf} = this.props;
+        const value = bookShelf => {
+          if(bookShelf === "currentlyReading") return "currentlyReading";
+          if(bookShelf === "wantToRead") return "wantToRead";
+          if(bookShelf === "read") return "read";
+          if(bookShelf === "none") return "none";
+        }
+
         return(
             <div className="book-shelf-changer">
-                <select className='shelf-changer' onClick={this.setdefault} onChange={this.handleSubmit}>
-                    <option value="move" disabled >Move to...</option>
-                    <option value="currentlyReading" selected ={bookShelf === "currentlyReading" && (true)}>Currently Reading</option>
-                    <option value="wantToRead" selected ={bookShelf === "wantToRead" && (true)}>Want to Read</option>
-                    <option value="read" selected ={bookShelf === "read" && (true)}>Read</option>
-                    <option value="none" selected ={bookShelf === "none" && (true)}>None</option>
+                <select className='shelf-changer' defaultValue={value(bookShelf)} onChange={this.handleSubmit}>
+                    <option value="move" disabled>Move to...</option>
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option value="none">None</option>
                 </select>              
             </div>
         )
     }
-
-
-
 }
 
 export default ShelfChanger;
