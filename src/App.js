@@ -54,19 +54,26 @@ class BooksApp extends React.Component {
 
   // A method for getting the searched books from API and set the state with the results 
   bookSearchUpdate = (searchKey) =>{
-    BooksAPI.search(searchKey).then(results =>{
-      if(results && !(results.error)){
-        this.matchBooks(results)
-        this.setState({
-         searchResults: results
+    if(searchKey){
+      BooksAPI.search(searchKey).then(results =>{
+        if(results && !(results.error)){
+          this.matchBooks(results)
+          this.setState({
+          searchResults: results
+          })
+        }
+        else{
+          this.setState({
+            searchResults: []
+          })
+        }
       })
-      }
-      else{
-        this.setState({
-          searchResults: []
-        })
-      }
-    })
+    }
+    else{
+      this.setState({
+      searchResults: []
+      })
+    }
   }
 
   render() {
